@@ -14,8 +14,8 @@ namespace Business.Concrete
 {
     public class AuthManager : IAuthService
     {
-        private readonly IUserService _userService;//readonly ekledim.
-        private readonly ITokenHelper _tokenHelper;//readonly ekledim.
+        private  IUserService _userService;//readonly ekledim.
+        private  ITokenHelper _tokenHelper;//readonly ekledim.
 
         public AuthManager(IUserService userService, ITokenHelper tokenHelper)
         {
