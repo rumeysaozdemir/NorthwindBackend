@@ -1,4 +1,5 @@
-﻿using Castle.Core.Interceptor;
+﻿//using Castle.Core.Interceptor;
+using Castle.DynamicProxy;
 using Castle.DynamicProxy.Tokens;
 using System;
 using System.Collections.Generic;
