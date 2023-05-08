@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
-        [Authorize(Roles = "Product.List")]
+        
         public IActionResult GetList()
         {
             var result = _productService.GetList();
@@ -88,7 +88,7 @@ namespace WebAPI.Controllers
 
         }
 
-        [HttpPost("transaction")] //
+        [HttpPost("transaction")] 
         public IActionResult TransactionTest(Product product)
         {
             var result = _productService.TransactionOperation(product);
