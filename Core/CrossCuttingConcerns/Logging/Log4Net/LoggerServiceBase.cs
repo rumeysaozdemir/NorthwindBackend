@@ -16,11 +16,60 @@ namespace Core.CrossCuttingConcerns.Logging.Log4Net
         {
             XmlDocument xmlDocument = new XmlDocument();
             xmlDocument.Load(File.OpenRead("log4net.config"));
-            
-            ILoggerRepository loggerRepository = LogManager.CreateRepository(Assembly.GetEntryAssembly(),typeof(log4net.Repository.Hierarchy.Hierarchy));
+
+            ILoggerRepository loggerRepository = LogManager.CreateRepository(Assembly.GetEntryAssembly(), typeof(log4net.Repository.Hierarchy.Hierarchy));
             log4net.Config.XmlConfigurator.Configure(loggerRepository, xmlDocument["log4net"]);
 
             _log = LogManager.GetLogger(loggerRepository.Name, name);
-         }
+        }
+
+        public bool IsInfoEnabled => _log.IsInfoEnabled;
+        public bool IsDebugEnabled => _log.IsDebugEnabled;
+        public bool IsFatalEnabled => _log.IsFatalEnabled;
+        public bool IsWarnEnabled => _log.IsWarnEnabled;
+        public bool IsErrorEnabled => _log.IsErrorEnabled;
+
+        public void Info(object logMessage)
+        {
+            if (IsInfoEnabled)
+            {
+                _log.Info(logMessage);
+            }
+        }
+
+        public void Debug(object logMessage)
+        {
+            if (IsDebugEnabled)
+            {
+                _log.Debug(logMessage);
+            }
+        }
+
+        public void Fatal(object logMessage)
+        {
+            if (IsFatalEnabled)
+            {
+                _log.Fatal(logMessage);
+            }
+        }
+
+        public void Warn(object logMessage)
+        {
+            if (IsWarnEnabled)
+            {
+                _log.Warn(logMessage);
+            }
+        }
+
+        public void Error(object logMessage)
+        {
+            if (IsErrorEnabled)
+            {
+                _log.Error(logMessage);
+            }
+        }
+
     }
 }
+
+//Bir hata alırsan buraya bak. 15.ders
