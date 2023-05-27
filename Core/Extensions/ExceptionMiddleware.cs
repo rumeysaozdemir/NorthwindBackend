@@ -34,7 +34,7 @@ namespace Core.Extensions
             httpContext.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
             return httpContext.Response.WriteAsync(new ErrorDetails
             {
-                StatusCode = httpContext.Response.StatusCode,
+                StatusCode = httpContext.Response.StatusCode.ToString(), //httpContext.Response.StatusCode.ToString() olunca hata vermiyor
                 Message = "Internal Server Error"
             }.ToString());
         }
