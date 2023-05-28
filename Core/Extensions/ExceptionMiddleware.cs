@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -32,10 +33,17 @@ namespace Core.Extensions
         {
             httpContext.Response.ContentType = "application/json";
             httpContext.Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
+
+            string message = "Internal Server Error";
+            if (e.GetType() == typeof(ValidationException))
+            {
+                message = e.Message;
+            }
+
             return httpContext.Response.WriteAsync(new ErrorDetails
             {
                 StatusCode = httpContext.Response.StatusCode.ToString(), //httpContext.Response.StatusCode.ToString() olunca hata vermiyor
-                Message = "Internal Server Error"
+                Message = message
             }.ToString());
         }
     }
